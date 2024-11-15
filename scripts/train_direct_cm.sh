@@ -1,0 +1,34 @@
+export MODEL_NAME="stabilityai/stable-diffusion-xl-base-1.0"
+export VAE_PATH="madebyollin/sdxl-vae-fp16-fix"
+
+accelerate launch --gpu_ids 0 train_direct_cm.py \
+    --pretrained_teacher_model=${MODEL_NAME}  \
+    --pretrained_vae_model_name_or_path=${VAE_PATH} \
+    --output_dir="results/direct-cm-ddim100-w9-lr1e4-bs16-250steps" \
+    --mixed_precision="fp16" \
+    --train_data_dir="data/laion_aes/preprocessed_11k" \
+    --resolution=1024 \
+    --dataloader_num_workers=8 \
+    --train_batch_size=16 \
+    --vae_encode_batch_size=16 \
+    --gradient_accumulation_steps=1 \
+    --gradient_checkpointing \
+    --enable_xformers_memory_efficient_attention \
+    --use_8bit_adam \
+    --adam_weight_decay=1e-2 \
+    --lora_rank=64 \
+    --lora_alpha=64 \
+    --learning_rate=1e-4 \
+    --lr_scheduler="constant" \
+    --lr_warmup_steps=0 \
+    --solver="ddim" \
+    --num_discr_timesteps=100 \
+    --w=9.0 \
+    --max_train_steps=250 \
+    --checkpointing_steps=50 \
+    --checkpoints_total_limit=2 \
+    --validation_steps=10 \
+    --num_inference_steps=4 \
+    --num_images_per_prompt=6 \
+    --seed=24 \
+    --report_to="tensorboard" \
