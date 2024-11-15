@@ -109,7 +109,7 @@ If you find this work useful in your research, please cite the following paper:
 @inproceedings{vouitsis2024inconsistencies,
   title={Inconsistencies In Consistency Models: Better ODE Solving Does Not Imply Better Samples},
   author={Vouitsis, No{\"e}l and Hosseinzadeh, Rasa and Ross, Brendan Leigh and Villecroze, Valentin and Gorti, Satya Krishna and Cresswell, Jesse C and Loaiza-Ganem, Gabriel},
-  booktitle={NeurIPS 2024 Workshop on Attributing Model Behavior at Scale}
+  booktitle={NeurIPS 2024 Workshop on Attributing Model Behavior at Scale},
   year={2024}
 }
 ```
